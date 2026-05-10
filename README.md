@@ -10,6 +10,12 @@ Projeto completo para executar **rTorrent + ruTorrent + nginx + php-fpm** em um 
 - execução final como usuário **não-root** (UID/GID configurável)
 - timezone configurável (padrão `America/Fortaleza`)
 - IP externo obtido de `https://ipinfo.io/json`
+- **suporte completo aos plugins ruTorrent** com programas externos:
+  - `python3` → plugin _cloudflare
+  - `ffmpeg` → plugin screenshots
+  - `sox` → plugin spectrogram
+  - `mediainfo` → plugin mediainfo
+  - `dumptorrent` → plugin dump
 
 ## Estrutura
 
@@ -33,7 +39,8 @@ Projeto completo para executar **rTorrent + ruTorrent + nginx + php-fpm** em um 
 │   │       └── config.php.template
 │   └── scripts/
 │       ├── entrypoint.sh
-│       └── start-services.sh
+│       ├── start-services.sh
+│       └── dumptorrent.py
 └── README.md
 ```
 
@@ -78,6 +85,20 @@ curl -H 'Content-Type: text/xml' \
 - O `rtorrent.rc` foi escrito com sintaxe moderna (`*.set`) e sem comandos obsoletos clássicos (`scgi_port`, etc.).
 - Nginx e PHP-FPM usam sockets locais internos.
 - O bootstrap remove socket e lock stale do rTorrent em reinicializacoes, evitando erro de sessao presa no volume persistente.
+
+## Plugins ruTorrent suportados
+
+Todos os programas externos necessários estão pré-instalados e configurados:
+
+| Plugin | Programa | Caminho |
+|--------|----------|---------|
+| _cloudflare | python3 | `/usr/bin/python3` |
+| screenshots | ffmpeg | `/usr/bin/ffmpeg` |
+| spectrogram | sox | `/usr/bin/sox` |
+| mediainfo | mediainfo | `/usr/bin/mediainfo` |
+| dump | dumptorrent | `/usr/local/bin/dumptorrent` |
+
+Os caminhos estão mapeados no arquivo `config.php` via array `$pathToExternals`.
 
 ## Autor
 

@@ -5,6 +5,11 @@ $pathToExternals = array(
     'gzip'  => '/usr/bin/gzip',
     'id'    => '/usr/bin/id',
     'stat'  => '/usr/bin/stat',
+    'python' => '/usr/bin/python3',
+    'ffmpeg' => '/usr/bin/ffmpeg',
+    'sox'   => '/usr/bin/sox',
+    'mediainfo' => '/usr/bin/mediainfo',
+    'dumptorrent' => '/usr/local/bin/dumptorrent',
 );
 
 $topDirectory = '/data';

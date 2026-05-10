@@ -1,8 +1,6 @@
 services:
   rutorrent:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: renatomb/rutorrent:latest
     container_name: rutorrent
     environment:
       TIMEZONE: ${TIMEZONE:-America/Fortaleza}

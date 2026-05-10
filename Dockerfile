@@ -16,9 +16,11 @@ RUN if getent passwd ubuntu >/dev/null 2>&1; then userdel --remove ubuntu || use
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
+    ffmpeg \
     git \
     gosu \
     jq \
+    mediainfo \
     nginx \
     php8.3-cli \
     php8.3-curl \
@@ -26,9 +28,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     php8.3-mbstring \
     php8.3-xml \
     php8.3-zip \
+    python3 \
+    python3-pip \
     rtorrent \
+    sox \
     tmux \
     tzdata \
+    && pip3 install --no-cache-dir --break-system-packages bencodepy \
     && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --system rutorrent && \
@@ -55,8 +61,9 @@ COPY files/rtorrent/rtorrent.rc.template /templates/rtorrent.rc.template
 COPY files/rutorrent/conf/config.php.template /templates/rutorrent-config.php.template
 COPY files/scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY files/scripts/start-services.sh /usr/local/bin/start-services.sh
+COPY files/scripts/dumptorrent.py /usr/local/bin/dumptorrent
 
-RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/start-services.sh && \
+RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/start-services.sh /usr/local/bin/dumptorrent && \
     chown -R rutorrent:rutorrent /var/www/rutorrent /data /run/rtorrent /tmp/nginx /tmp/php
 
 EXPOSE 8666 51413 51413/udp 51414
