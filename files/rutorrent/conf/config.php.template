@@ -1,0 +1,26 @@
+<?php
+$pathToExternals = array(
+    'php'   => '/usr/bin/php',
+    'curl'  => '/usr/bin/curl',
+    'gzip'  => '/usr/bin/gzip',
+    'id'    => '/usr/bin/id',
+    'stat'  => '/usr/bin/stat',
+);
+
+$topDirectory = '/data';
+$scgi_port = 0;
+$scgi_host = 'unix:///run/rtorrent/rpc.socket';
+
+$XMLRPCMountPoint = '/RPC2';
+
+$localhosts = array('127.0.0.1', 'localhost');
+$log_file = '/data/logs/rutorrent-errors.log';
+$tempDirectory = '/tmp';
+
+$canUseXSendFile = false;
+$saveUploadedTorrents = true;
+$overwriteUploadedTorrents = false;
+$forbidUserSettings = false;
+$scgiTimeOut = 30;
+$scgiOn = true;
+$pluginsOff = array();

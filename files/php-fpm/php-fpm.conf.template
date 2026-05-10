@@ -1,0 +1,5 @@
+[global]
+pid = /tmp/php/php-fpm.pid
+error_log = /data/logs/php/php-fpm-error.log
+daemonize = no
+include=/etc/php/8.3/fpm/pool.d/*.conf

@@ -1,0 +1,32 @@
+# Diretórios
+directory.default.set = /data/downloads
+session.path.set = /data/config/rtorrent/session
+
+# Watch directory pode ser configurado depois via ruTorrent/plugins, se desejado.
+
+# Rede e portas
+network.port_range.set = 51413-51413
+network.port_random.set = no
+network.max_open_sockets.set = 256
+network.max_open_files.set = 8192
+network.http.max_open.set = 64
+
+# SCGI para ruTorrent (socket local, porta 5000 não exposta)
+network.scgi.open_local = /run/rtorrent/rpc.socket
+
+# DHT / PEX / UDP trackers
+dht.mode.set = auto
+dht.port.set = 51414
+protocol.pex.set = yes
+trackers.use_udp.set = yes
+
+# IP externo obtido em runtime via ipinfo.io/json
+network.local_address.set = __EXTERNAL_IP__
+
+# Limites (KB/s). 0 = ilimitado
+throttle.global_down.max_rate.set_kb = __RT_DOWNLOAD_RATE_KB__
+throttle.global_up.max_rate.set_kb = __RT_UPLOAD_RATE_KB__
+
+# Encoding
+encoding.add = UTF-8
+system.umask.set = 0002
