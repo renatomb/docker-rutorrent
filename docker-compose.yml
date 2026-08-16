@@ -20,5 +20,6 @@ services:
     volumes:
       - ./downloads:/data/downloads
       - ./config:/data/config
+      - ./rutorrent-share:/var/www/rutorrent/share
       - ./logs:/data/logs
     restart: unless-stopped
