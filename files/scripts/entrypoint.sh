@@ -12,6 +12,7 @@ export DEBIAN_FRONTEND=noninteractive
 # --- Timezone ---
 ln -snf "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
 printf '%s\n' "${TIMEZONE}" > /etc/timezone
+export TZ="${TIMEZONE}"
 
 # --- Grupo ---
 if ! getent group rutorrent >/dev/null 2>&1; then

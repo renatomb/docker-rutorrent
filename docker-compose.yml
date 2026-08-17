@@ -13,10 +13,10 @@ services:
       # RT_DOWNLOAD_RATE_KB: 0
       # RT_UPLOAD_RATE_KB: 0
     ports:
-      - "8666:8666"
-      - "51413:51413/tcp"
-      - "51413:51413/udp"
-      - "51414:51414"
+      - "8666:8666"        # WebUI ruTorrent
+      - "51413:51413/tcp"  # torrent (peers)
+      - "51413:51413/udp"  # torrent (uTP/UDP)
+      - "51414:51414/udp"  # DHT
     volumes:
       - ./downloads:/data/downloads
       - ./config:/data/config
