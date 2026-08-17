@@ -14,6 +14,10 @@ ln -snf "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
 printf '%s\n' "${TIMEZONE}" > /etc/timezone
 export TZ="${TIMEZONE}"
 
+# Forca a timezone no PHP (FPM e CLI), pois o PHP ignora /etc/localtime
+printf 'date.timezone = %s\n' "${TIMEZONE}" > /etc/php/8.3/fpm/conf.d/99-timezone.ini
+printf 'date.timezone = %s\n' "${TIMEZONE}" > /etc/php/8.3/cli/conf.d/99-timezone.ini
+
 # --- Grupo ---
 if ! getent group rutorrent >/dev/null 2>&1; then
   addgroup --gid "${APP_GID}" rutorrent
