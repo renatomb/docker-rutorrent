@@ -139,6 +139,16 @@ fi
 
 # rTorrent le de /etc/rtorrent/rtorrent.rc -> aponta pro arquivo do volume.
 ln -snf "${RTORRENT_RC_PERSIST}" /etc/rtorrent/rtorrent.rc
+
+# Popular o share persistente preservando a estrutura de fabrica.
+# Copia apenas o que estiver faltando (nao sobrescreve dados do usuario).
+if [ ! -d /var/www/rutorrent/share/torrents ]; then
+  cp -a -n /var/www/rutorrent/share.skel/. /var/www/rutorrent/share/ 2>/dev/null || true
+fi
+
+mkdir -p /var/www/rutorrent/share/settings \
+         /var/www/rutorrent/share/torrents \
+         /var/www/rutorrent/share/users
 # <<< fim do bloco persistente >>>
 
 # --- Permissoes ---

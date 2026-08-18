@@ -51,7 +51,8 @@ RUN mkdir -p /var/www/rutorrent \
     /tmp/nginx \
     /tmp/php
 
-RUN git clone --depth 1 --branch ${RUTORRENT_REF} ${RUTORRENT_REPO} /var/www/rutorrent
+RUN git clone --depth 1 --branch ${RUTORRENT_REF} ${RUTORRENT_REPO} /var/www/rutorrent \
+    && cp -a /var/www/rutorrent/share /var/www/rutorrent/share.skel
 
 COPY files/nginx/nginx.conf.template /templates/nginx.conf.template
 COPY files/nginx/conf.d/rutorrent.conf.template /templates/rutorrent.conf.template
